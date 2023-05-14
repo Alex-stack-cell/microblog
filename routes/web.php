@@ -32,7 +32,7 @@ Route::get('/dashboard', function () {
 
 Route::resource('article', ArticleController::class)
     ->only(['index', 'store'])
-    ->middleware(['auth','verified']);
+    ->middleware(['auth']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
