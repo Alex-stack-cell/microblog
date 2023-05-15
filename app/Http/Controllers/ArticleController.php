@@ -14,7 +14,7 @@ class ArticleController extends Controller
      */
     public function index():Response
     {
-        $articles = Article::with('user:id, name')->latest()->get();
+        $articles = Article::with('user:id,name')->latest()->get();
         return Inertia::render('Articles/Index',[
             'articles' => $articles
         ]);
