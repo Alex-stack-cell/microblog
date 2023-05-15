@@ -1,8 +1,11 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
+import Article from "@/Components/Article.vue";
 import InputError from '@/Components/InputError.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import { useForm, Head } from '@inertiajs/vue3';
+
+defineProps(['articles']);
 
 const form = useForm({
     message: '',
@@ -23,6 +26,14 @@ const form = useForm({
                 <InputError :message="form.errors.message" class="mt-2" />
                 <PrimaryButton class="mt-4">Add</PrimaryButton>
             </form>
+
+            <div class="mt-6 bg-white shadow-sm rounded-lg divide-y">
+                <Article
+                    v-for="article in articles"
+                    :key="article.id"
+                    :article="article"
+                />
+            </div>
         </div>
     </AuthenticatedLayout>
 </template>

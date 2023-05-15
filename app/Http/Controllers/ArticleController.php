@@ -14,8 +14,9 @@ class ArticleController extends Controller
      */
     public function index():Response
     {
+        $articles = Article::with('user:id, name')->latest()->get();
         return Inertia::render('Articles/Index',[
-            //
+            'articles' => $articles
         ]);
     }
 
@@ -32,7 +33,13 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'message' => 'required|string|max:255',
+        ]);
+
+        $request->user()->articles()->create($validated);
+
+        return redirect(route('article.index'));
     }
 
     /**
