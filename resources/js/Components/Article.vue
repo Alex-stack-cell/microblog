@@ -47,7 +47,7 @@ const editing = ref(false);
                 </Dropdown>
             </div>
 
-            <form v-if="editing" @submit.prevent="form.put(route('articles.update', article.id), { onSuccess: () => editing = false })">
+            <form v-if="editing" @submit.prevent="form.put(route('article.update', article.id), { onSuccess: () => editing = false })">
                 <textarea v-model="form.message" class="mt-4 w-full text-gray-900 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"></textarea>
                 <InputError :message="form.errors.message" class="mt-2" />
                 <div class="space-x-2">
