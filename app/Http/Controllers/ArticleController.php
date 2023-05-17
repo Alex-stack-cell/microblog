@@ -63,7 +63,13 @@ class ArticleController extends Controller
      */
     public function update(Request $request, Article $article)
     {
-        //
+        $validated = $request->validate([
+            'message' => 'required|string|max:255'
+        ]);
+
+        $article->update($validated);
+
+        return redirect(route('article.index'));
     }
 
     /**
