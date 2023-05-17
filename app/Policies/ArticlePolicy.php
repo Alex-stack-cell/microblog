@@ -43,9 +43,9 @@ class ArticlePolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, Article $article)
+    public function delete(User $user, Article $article): bool
     {
-        //
+        return $this->update($user, $article);
     }
 
     /**
